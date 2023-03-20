@@ -1,6 +1,8 @@
 trigger:
 - '*'
 
+WEBSITE_RUN_FROM_PACKAGE = 1
+
 variables:
   buildConfiguration: 'Release'
 
