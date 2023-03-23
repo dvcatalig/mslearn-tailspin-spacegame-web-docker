@@ -2,11 +2,11 @@ trigger:
 - '*'
 variables:
  tag: '$(Build.BuildId)'
-  buildConfiguration: 'Release'
-  webRepository: 'web'
-- stage: 'Build'
-  displayName: 'Build and push'
-  jobs:  
+ buildConfiguration: 'Release'
+ webRepository: 'web'
+-stage: 'Build'
+displayName: 'Build and push'
+jobs:  
   - job: 'Build'
     displayName: 'Build job'
     pool:
@@ -20,12 +20,12 @@ variables:
       repository: $(webRepository)
       dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
       containerRegistry: 'Container Registry Connection'
-      tags:| 
+      tags: |
        $(tag)
-- stage: 'Deploy'
-  displayName: 'Deploy the container'
-  dependsOn: Build
-  jobs:
+-stage2: 'Deploy'
+-displayName: 'Deploy the container'
+dependsOn: 'Build'
+jobs2:
   - job: 'Deploy'
     displayName: 'Deploy job'
     pool:
@@ -37,4 +37,4 @@ variables:
        inputs:
        appName: $(WebAppName)
        azureSubscription: 'Resource Manager - Tailspin - Space Game'
-       imageName: $(RegistryName)/$(webRepository):$(build.buildId)trigger:
+       imageName: $(RegistryName)/$(webRepository):$(build.buildId)
