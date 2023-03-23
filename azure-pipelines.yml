@@ -1,9 +1,9 @@
 trigger:
 - '*'
 variables:
- tag: '$(Build.BuildId)'
   buildConfiguration: 'Release'
   webRepository: 'web'
+  tag: '$(Build.BuildId)'
 - stage: 'Build'
   displayName: 'Build and push'
   jobs:  
@@ -20,8 +20,7 @@ variables:
       repository: $(webRepository)
       dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
       containerRegistry: 'Container Registry Connection'
-      tags:
-      $(tag)
+      tags: $(tag)
 - stage: 'Deploy'
   displayName: 'Deploy the container'
   dependsOn: Build
