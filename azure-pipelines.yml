@@ -21,7 +21,7 @@ variables:
       dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
       containerRegistry: 'Container Registry Connection'
       tags:|
-       $(tag)
+      $(tag)
 - stage: 'Deploy'
   displayName: 'Deploy the container'
   dependsOn: Build
