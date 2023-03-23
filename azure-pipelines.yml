@@ -22,10 +22,10 @@ jobs:
       containerRegistry: 'Container Registry Connection'
       tags: |
        $(tag)
--stage2: 'Deploy'
+-stage: 'Deploy'
 -displayName: 'Deploy the container'
 dependsOn: 'Build'
-jobs2:
+jobs:
   - job: 'Deploy'
     displayName: 'Deploy job'
     pool:
