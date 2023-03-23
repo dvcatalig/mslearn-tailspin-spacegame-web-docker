@@ -1,10 +1,10 @@
 trigger:
 - '*'
 variables:
+ tag: '$(Build.BuildId)'
   buildConfiguration: 'Release'
   webRepository: 'web'
-  tag: '$(Build.BuildId)'
--stage: 'Build'
+- stage: 'Build'
   displayName: 'Build and push'
   jobs:  
   - job: 'Build'
