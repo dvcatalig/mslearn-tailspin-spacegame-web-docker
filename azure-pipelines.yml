@@ -1,3 +1,9 @@
+trigger:
+- '*'
+variables:
+  buildConfiguration: 'Release'
+  webRepository: 'web'
+  -tag: '$(Build.BuildId)'
 stages:
 - stage: 'Build'
   displayName: 'Build and push'
@@ -7,16 +13,8 @@ stages:
     pool:
       vmImage: 'ubuntu-20.04'
     steps:
-    - task: Docker@2
+    - task: AzureWebAppContainer@1
       displayName: 'Build and push the image to container registry'
-      inputs:
-        command: buildAndPush
-        buildContext: $(Build.Repository.LocalPath)
-        repository: $(webRepository)
-        dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        containerRegistry: 'Container Registry Connection'
-        tags: |
-          $(tag)
 - stage: 'Deploy'
   displayName: 'Deploy the container'
   dependsOn: Build
