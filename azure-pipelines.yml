@@ -12,7 +12,7 @@ stages:
       inputs:
         command: buildAndPush
         buildContext: $(Build.Repository.LocalPath)
-        repository: $(webRepository)
+        repository: $(Repository)
         dockerfile: 'C:\Demo\tailspin-spacegame-web-docker\Dockerfile'
         containerRegistry: 'Container Registry Connection'
         tags: |
