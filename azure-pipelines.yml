@@ -1,3 +1,9 @@
+trigger:
+- '*'
+variables:
+ buildConfiguration: 'Release'
+ webRepository: 'web'
+ tag: '$(Build.BuildId)'
 stages:
 - stage: 'Build'
   displayName: 'Build and push'
@@ -13,7 +19,7 @@ stages:
         command: buildAndPush
         buildContext: $(Build.Repository.LocalPath)
         repository: $(Repository)
-        dockerfile: $(LocalDocker)
+        dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
         containerRegistry: 'Container Registry Connection'
         tags: |
           $(tag)
